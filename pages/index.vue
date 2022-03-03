@@ -5,13 +5,20 @@
       :key="home.objectID"
       style="float: left; margin: 10px"
     >
-      <HomeCard :home="home" />
+      <nuxt-link :to="`/home/${home.objectID}`" prefetch>
+        <HomeCard :home="home" />
+      </nuxt-link>
     </div>
   </div>
 </template>
 <script>
 import homes from '~/data/homes'
 export default {
+  data() {
+    return {
+      homes: homes.slice(0, 3),
+    }
+  },
   head() {
     return {
       title: 'HomePage',
@@ -24,10 +31,5 @@ export default {
       ],
     }
   },
-  data() {
-    return {
-      homes: homes.slice(0, 3),
-    }
-  },
 }
-</script> 
+</script>
